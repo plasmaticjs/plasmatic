@@ -1,0 +1,15 @@
+[include]
+./src/**/*.js
+!./src/**/**/__spec__/*.spec.js
+
+[ignore]
+.*/node_modules/.*
+.*/api-docs/.*
+.*/build/.*
+.*/coverage/.*
+.*/es2015/.*
+.*/backup/.*
+
+[options]
+all=true
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe

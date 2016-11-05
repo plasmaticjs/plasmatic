@@ -1,0 +1,24 @@
+# IDEA
+.idea
+*.iml
+
+.DS_store
+
+# Node Module
+node_modules
+
+# NPM
+npm-debug*
+
+# Coverage
+coverage
+
+# Temporary directories
+es2015
+
+# Sonar
+.sonar
+
+# Build
+dist
+api-docs

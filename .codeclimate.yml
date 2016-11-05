@@ -1,0 +1,22 @@
+engines:
+  eslint:
+    enabled: true
+    channel: "eslint-3"
+    config:
+      extensions:
+      - .js
+
+ratings:
+   paths:
+   - "src/**.js"
+exclude_paths:
+- "**.babel.js"
+- "node_modules/**/**/*"
+- "**.conf.js"
+- "**.json"
+- "**.yml"
+- "**.iml"
+- "**.properties"
+- "**.lock"
+- "**.MD"
+- "**.spec.js"

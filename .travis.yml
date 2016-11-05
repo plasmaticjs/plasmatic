@@ -1,0 +1,29 @@
+language: java
+jdk:
+- oraclejdk8
+addons:
+  sonarqube: true
+env:
+  global:
+  - GITHUB_REPO: plasmaticjs/plasmatic
+  - secure: g+UKZsQLnXci6CUOHqMmjJvyhHYK29iItGh3XclfEiMGIZl7vtAiIgoICuK/E3KKx4idgU3mv1S8bBlhdclLIWfsItksAYRJQsK+136lOMQcQGefCAzkmxZO4gIdhzmRh+r517BvnCfvuWVhfwIppdGlxcXwEByPSli1DEE6isKel+hzgJNPadXBgFRtcKIk9mJKkHOiESoqopitpBWftIKqSIp2bTi9wMRTKhuoB1OmZyWahYt+A3AwV0Oj/lb5V6BiiJwxbJ6QnEi06A+kc1jr4gO/YhAhNpJegEZQFB2gF0ozpGLWr/bTmmVuqtNAyvwBT/wuEmFXqJwk5+g+Dkpb2N/8v7L/+wcyfLteEpW4NjA7FwQzdKGxw4wmW5rQZSrGeCBQXO4QGzq8mwzT310g7gDLPt9LRdlhmUDqJBoIinMTD3O8Qi8EPQfNCPGP32vZZiYXZMTBhy1q0rZ7lSEfd1j7W5ODlsnDsqrfGV5sHKyhn88+72kDu4aElyiC6fc0nqhXYXrSrTWOWAZcQMd0SxE5N2HJLLmf+5jRhyE4W8TUVBQTU8nUyRtpXihC0t60ti/DfwGxJWTJMgNiUe6VRRifZm/4JeedmidAaq8B3zs64dcPFRWRAsvbZTUaWYrha68d9PlAjmSF5R+8RDEAGrYIst06k/d+m7kFTec=
+  - secure: U7DhGPmZwddqeNay+aZNFu02LomQR5A0tuJ480WNLVW/fOo3TKIXeyRBgtLRNrryTDyRTb0ENE4vSg/8sk6DP1RVM2+12w+nX4V5H/a6GtTV1V9thPcrYo0cIvYN55WgpJmYRY0J5D0glNHMg/+HwnPBygGhky2jfNEv5FRrbeIFZj3v4CzU95tmonKCKQbj0zfM9NcVOgivUqavla18ym9JWoHT9MquN/lXBC8RkjDAiWw+elBbkOnSQfXo9OXoqUoRMoKZdIZdw3GzRaOlxJ+xDQYGzvVlFKWz1JTsd3KRcgSM2I5u08YzxbZrFH/UT0Fjj9N6fCRA2Qhzgguzw5OcxpTbPpGIUDM55/Ycs5LZ2JM1F2W9tzl84PHjeU2eYkbRV19tkteMjE2fZe9E1w21B/I4JlKAQ7WTfHSZ6J/79lV1510qMdOMa7BTxl/fp7/FIzQBimYy1dkyUlPpBiExIK1Sjlrj/RsA6RB2NjdFlaJ77tHXn6AO1C9tnTO13FJihT4fnagujJuKgZoXpQWhhnpqCouwS4ZzJZLEsRtWIb68MKfq0o2VE7mXa13aqrdtwuamUEf6MBMb+CI/YgsjRMW3YduBlDHVLcxAz+dnGfHtj2M/FpaTEO1hES8AZljOCo/rHCNmshLUsyGV57PcfIyUzzSmyNvQqpFyciY=
+  - secure: pwDvnP/OZ93Rb96QKVu+SJdMiQawR82CXt5+jQBgHVB6CZLHzuPCyQTZ7YFrX5COm58sbaKcMvPm8vhMiDvcV2LK+dhas5EppugfRyxZKjG/FaQv06xdeDv8ROJV+2PwUC5CbuPn5thXaD80KOVwHbuhNQxbHoSOXKX9RdcjEWZfzKOme2H/FAVuhf1OZIQvolMiyYPWDM9VXjKwZ7+aaq9sqeW0pV+wqLdSkFLfmy7/ESMQbuPvbjf01s0QhX1V/tU3C5wYcNlgzc5JA73SuiskJDGhkXEmsG8KBAgmVgkfKg0v8SE1LDJKgwrwI4Fg7HeoIxm26Ozvh9/YVerrjlMJTsG3dULZ1GvGjyxSR+9ubTueKVtgfDam/W7lo/DG396dyKKPYr6EoazeB3KoL+3oy30jMxCgQ+7gUGAxLNIZIcbEKDGimkp6hf3m9RvhW7UytlcDZuqG6gDhagSpITaQ926gWpuVW1CUkPSaFuj+XEbACvTN3J2bvEGriW1MQYMdnlvBT56aX1c7H+PoIvrblIoQviZY58wcKNLMDfAXM/TpI+00vh+4tk/hvYkcF1WBHHOcLkEU7qsws4xq/6d70ZNY7XxsunQuCKTJ/CKreSUFC0rdiAZF6EH5KZsadGyAShACgMvqY4HHd68dsGw4PVzvVNhm6BYxvd5ecQc=
+  matrix:
+  - JOB_TYPE=docs
+  - JOB_TYPE=sonarqube
+  - JOB_TYPE=coverage
+  - JOB_TYPE=lint
+before_install:
+- rvm install 2.3.1
+- wget https://raw.githubusercontent.com/creationix/nvm/v0.31.0/nvm.sh -O ~/.nvm/nvm.sh
+- source ~/.nvm/nvm.sh
+- nvm install 6
+- node --version
+- npm --version
+- npm install --global yarn
+node_js:
+- '6'
+install:
+- yarn install
+script: "./scripts/build.sh"
