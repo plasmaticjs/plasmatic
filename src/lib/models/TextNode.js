@@ -1,5 +1,5 @@
-import PlasmaticNode from './PlasmaticNode';
-import type { HtmlNodeType } from './../Types';
+import PlasmaticNode from 'models/PlasmaticNode';
+import type { HtmlNodeType } from 'lib/Types';
 
 class TextNode extends PlasmaticNode {
   content: string;

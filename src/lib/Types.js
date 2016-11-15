@@ -1,4 +1,4 @@
-import PlasmaticNode from './models/PlasmaticNode';
+import PlasmaticNode from 'models/PlasmaticNode';
 
 export type ComponentType = {
   type: mixed,

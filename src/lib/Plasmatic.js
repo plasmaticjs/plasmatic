@@ -1,7 +1,8 @@
-import PlasmaticError from './PlasmaticError';
-import Logger from './Logger';
-import Renderer from './Renderer';
-import PlasmaticNode from './models/PlasmaticNode';
+import PlasmaticError from 'lib/PlasmaticError';
+import Logger from 'lib/Logger';
+import Renderer from 'lib/Renderer';
+import PlasmaticNode from 'models/PlasmaticNode';
+
 
 /**
  * Plasmatic library

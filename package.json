@@ -5,8 +5,10 @@
   "main": "build/index.js",
   "dependencies": {},
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
+    "babel-plugin-module-alias": "^1.6.0",
     "babel-plugin-remove-comments": "^2.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",
     "babel-preset-babili": "^0.0.8",

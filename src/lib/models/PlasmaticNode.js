@@ -1,4 +1,4 @@
-import type { PropsType, PlasmaticNodeJsonType, HtmlNodeType } from './../Types';
+import type { PropsType, PlasmaticNodeJsonType, HtmlNodeType } from 'lib/Types';
 
 type StateType = {};
 

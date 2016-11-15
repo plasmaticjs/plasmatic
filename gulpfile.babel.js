@@ -120,14 +120,19 @@ gulp.task('build', () => (
   gulp.src(config.files.sources)
     .pipe(babel({
       babelrc: false,
-      plugins: ['remove-comments', 'babel-plugin-transform-flow-strip-types'],
+      plugins: ['remove-comments', 'babel-plugin-transform-flow-strip-types',
+        ["module-alias", [
+          { "src": "./src/lib/utils", "expose": "utils" },
+          { "src": "./src/lib/models", "expose": "models" },
+          { "src": "./src/lib", "expose": "lib" },
+        ]]],
     }))
     .pipe(gulp.dest(config.files.build))
 ));
 
-gulp.task('build:watch', () => (
+gulp.task('build:watch', gulp.parallel('build', () => (
   gulp.watch(config.files.sources, gulp.series('build'))
-));
+)));
 
 gulp.task('build:dist', () => (
   gulp.src(config.files.sources)

@@ -1,8 +1,8 @@
-import PlasmaticComponent from './models/PlasmaticComponent';
-import PlasmaticNode from './models/PlasmaticNode';
-import TextNode from './models/TextNode';
+import PlasmaticComponent from 'models/PlasmaticComponent';
+import PlasmaticNode from 'models/PlasmaticNode';
+import TextNode from 'models/TextNode';
 
-import type { HtmlNodeType } from './Types';
+import type { HtmlNodeType } from 'lib/Types';
 
 function createComponent(type: string, props: mixed, ...childNodes: Array<PlasmaticNode>): PlasmaticNode {
   return new PlasmaticComponent(type, props, ...childNodes);

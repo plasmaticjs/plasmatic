@@ -1,5 +1,5 @@
-import Renderer from './lib/Renderer';
-import Plasmatic from './lib/Plasmatic';
+import Renderer from 'lib/Renderer';
+import Plasmatic from 'lib/Plasmatic';
 
 export default {
   App: Plasmatic,
