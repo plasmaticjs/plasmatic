@@ -31,20 +31,14 @@ cd ../../
 yarn install
 gulp --env=build build:dist
 
+rm -rf docs
+rm -rf node_modules
+rm -rf coverage
+rm -rf es2015
+rm -rf build
+
 cd dist
 git init
 git add dist*
 git commit -m "Deploy Distribution from Travis CI"
 git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPO}.git" master:distribution > /dev/null 2>&1
-
-
-cd /../../
-gulp build
-cd api-docs
-mv gen api
-cd api
-
-cd dist
-git init
-git commit -m "Deploy Documentation from Travis CI"
-git push --force --quiet "https://${GITHUB_TOKEN}@github.com/plasmaticjs/plasmatic.io-web.git" master:gh-pages > /dev/null 2>&1
