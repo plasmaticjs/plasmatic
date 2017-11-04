@@ -29,10 +29,23 @@ function restoreEnv() {
 
 gulp.task('flow', () => (
   gulp.src(config.files.sources)
-    .pipe(flow({
-      all: true,
-      abort: isBuild,
+    .pipe(babel({
+      babelrc: false,
+      plugins: ['syntax-flow',
+        ['module-alias', [
+          { src: './src/lib/utils', expose: 'utils' },
+          { src: './src/lib/models', expose: 'models' },
+          { src: './src/lib', expose: 'lib' },
+        ]]],
     }))
+    .pipe(gulp.dest('flow-temp'))
+    .on('end', () => {
+      gulp.src('flow-temp/**/*.js')
+        .pipe(flow({
+          all: true,
+          abort: isBuild,
+        }))
+    })
 ));
 
 gulp.task('flow:watch', gulp.parallel('flow', () => (
@@ -57,7 +70,13 @@ gulp.task('eslint:tests', () => (
 
 gulp.task('eslint', gulp.series('eslint:tests', () => (
   gulp.src(config.files.sources)
-    .pipe(eslint())
+    .pipe(eslint({
+      rules: {
+        'import/no-extraneous-dependencies': 0,
+        'import/extensions': 0,
+        'import/no-unresolved': 0,
+      },
+    }))
     .pipe(eslint.format())
     .pipe(isBuild ? eslint.failAfterError() : gutil.noop())
 )));
@@ -121,10 +140,10 @@ gulp.task('build', () => (
     .pipe(babel({
       babelrc: false,
       plugins: ['remove-comments', 'babel-plugin-transform-flow-strip-types',
-        ["module-alias", [
-          { "src": "./src/lib/utils", "expose": "utils" },
-          { "src": "./src/lib/models", "expose": "models" },
-          { "src": "./src/lib", "expose": "lib" },
+        ['module-alias', [
+          { src: './src/lib/utils', expose: 'utils' },
+          { src: './src/lib/models', expose: 'models' },
+          { src: './src/lib', expose: 'lib' },
         ]]],
     }))
     .pipe(gulp.dest(config.files.build))

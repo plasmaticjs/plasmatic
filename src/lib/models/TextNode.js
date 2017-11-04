@@ -8,10 +8,16 @@ class TextNode extends PlasmaticNode {
   constructor(content: string, type: mixed = {}, ...childNodes: Array<PlasmaticNode>) {
     super(content, type, childNodes);
     this.content = content;
+    this.isDomElement = true;
   }
 
   toDom(): Text {
     this.$domReference = document.createTextNode(this.content);
+
+    if (this.$domReference && this.$parentDomReference) {
+      this.$parentDomReference.appendChild(this.$domReference);
+    }
+
     return this.$domReference;
   }
 }

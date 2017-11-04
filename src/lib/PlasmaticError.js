@@ -13,13 +13,8 @@
  * throw err('Some error ocurred'); // Throws an error
  */
 
-class PlasmaticError {
-  constructor(msg: string): Error {
-    const err = new Error(msg);
-    err.name = 'Plasmatic Error';
-
-    return err;
-  }
+function PlasmaticError(message: string): boolean {
+  return console.error(message); // eslint-disable-line no-console
 }
 
 export default PlasmaticError;

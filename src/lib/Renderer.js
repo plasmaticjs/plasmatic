@@ -12,17 +12,33 @@ function createLiteral(content: string): PlasmaticNode {
   return new TextNode(content);
 }
 
-function createDomNode(node: PlasmaticNode): HtmlNodeType {
+function nodeCycle(node: PlasmaticNode, parentReference: PlasmaticNode): HtmlNodeType {
+  node.setParentReference(parentReference);
   const domNode = node.toDom();
 
   if (node.childNodes) {
     node.childNodes.forEach((childNode: PlasmaticNode) => {
-      createDomNode(childNode);
-      domNode.appendChild(childNode.$domReference);
+      createDomNode(childNode, node.$domReference); // eslint-disable-line no-use-before-define
     });
   }
 
   return domNode;
+}
+function createDomNode(node: PlasmaticNode, parentReference: PlasmaticNode): HtmlNodeType {
+  let parent = parentReference;
+
+  if (!parent) {
+    // If parent child is missing we need to create parent
+    parent = document.createElement('div');
+  }
+
+  // Ability to iterate trough multiple nodes
+  if (Array.isArray(node)) {
+    return node.map((child: PlasmaticNode): HtmlNodeType => nodeCycle(child, parent)); // eslint-disable-line arrow-parens
+  }
+
+  nodeCycle(node, parent);
+  return parent;
 }
 
 

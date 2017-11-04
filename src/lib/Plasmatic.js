@@ -1,4 +1,4 @@
-import PlasmaticError from 'lib/PlasmaticError';
+import plasmaticError from 'lib/PlasmaticError';
 import Logger from 'lib/Logger';
 import Renderer from 'lib/Renderer';
 import PlasmaticNode from 'models/PlasmaticNode';
@@ -39,7 +39,7 @@ class Plasmatic {
    */
   constructor(applicationId: string) {
     if (!applicationId) {
-      throw new PlasmaticError('Application ID must be specified');
+      plasmaticError('Application ID must be specified');
     }
     this.$applicationId = applicationId;
 
@@ -66,7 +66,7 @@ class Plasmatic {
    */
   render(mountPoint: PlasmaticNode) {
     if (!mountPoint) {
-      throw new PlasmaticError('Application render method called without Plasmatic component');
+      plasmaticError('Application render method called without Plasmatic component');
     } else {
       this.$mountPoint = mountPoint;
     }
@@ -81,7 +81,7 @@ class Plasmatic {
 
     this.$applicationContainer = document.querySelectorAll(`[pm-component="${this.$applicationId}"]`)[0];
     if (!this.$applicationContainer) {
-      throw Error(`Application mount point [pm-component="${this.$applicationId}"] not found`);
+      plasmaticError(`Application mount point [pm-component="${this.$applicationId}"] not found`);
     } else {
       this.mountApplication();
       Logger.debug('Application mounted', this.$startMicroseconds);
@@ -93,8 +93,7 @@ class Plasmatic {
    */
   mountApplication() {
     if (this.$mountPoint) {
-      const domNode = Renderer.createDomNode(this.$mountPoint);
-      this.$applicationContainer.appendChild(domNode);
+      Renderer.createDomNode(this.$mountPoint, this.$applicationContainer);
     }
   }
 }

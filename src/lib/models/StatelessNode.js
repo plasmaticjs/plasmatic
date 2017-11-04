@@ -1,9 +1,9 @@
 import PlasmaticNode from 'models/PlasmaticNode';
-import DomUtils from 'utils/DomUtils';
+import Renderer from 'lib/Renderer';
 
 import type { HtmlNodeType } from 'lib/Types';
 
-class HtmlNode extends PlasmaticNode {
+class StatelessNode extends PlasmaticNode {
   type: string;
   childNodes: Array<PlasmaticNode>;
   $domReference: HtmlNodeType;
@@ -12,19 +12,18 @@ class HtmlNode extends PlasmaticNode {
     super(type, props);
 
     this.childNodes = childNodes;
-    this.isDomElement = true;
   }
 
   toDom(): HTMLElement {
-    this.$domReference = document.createElement(this.type);
-    DomUtils.setProps(this.$domReference, this.props);
+    const data = this.type(this.props);
 
-    if (this.$domReference && this.$parentDomReference) {
-      this.$parentDomReference.appendChild(this.$domReference);
+    if (data.isDomElement && data.$domReference && this.$parentDomReference) {
+      this.$parentDomReference.appendChild(data.$domReference);
     }
 
+    this.$domReference = Renderer.createDomNode(data, this.$parentDomReference);
     return this.$domReference;
   }
 }
 
-export default HtmlNode;
+export default StatelessNode;

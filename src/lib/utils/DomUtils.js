@@ -12,9 +12,25 @@ function isHtmlTag(tag: string): boolean {
     'tbody', 'td', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track',
     'u', 'ul', 'var', 'video', 'wbr'];
 
-  return tag !== null && tags.indexOf(tag.toLowerCase()) > -1;
+  return tag !== null && typeof tag === 'string' && tags.indexOf(tag.toLowerCase()) > -1;
+}
+
+function setProps(domNode: HTMLElement, props: PropsType) {
+  if (props !== null && typeof props === 'object') {
+    Object.keys(props).forEach((name: string) => {
+      if (Object.prototype.hasOwnProperty.call(props, name)) {
+        const value = props[name];
+        if (name === 'className') {
+          domNode.setAttribute('class', value);
+        } else {
+          domNode.setAttribute(name, value);
+        }
+      }
+    });
+  }
 }
 
 export default {
   isHtmlTag,
+  setProps,
 };

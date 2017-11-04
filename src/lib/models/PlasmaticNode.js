@@ -12,6 +12,7 @@ type StateType = {};
  */
 class PlasmaticNode {
   $domReference: HtmlNodeType;
+  $parentDomReference: HtmlNodeType;
   childNodes: Array<PlasmaticNode>;
   $parentNode: HTMLElement;
   props: PropsType;
@@ -33,6 +34,9 @@ class PlasmaticNode {
     }
   }
 
+  setParentReference(parent: HtmlNodeType) {
+    this.$parentDomReference = parent;
+  }
   setState(state: StateType) {
     this.state = state;
   }
