@@ -15,6 +15,7 @@ coverage
 
 # Temporary directories
 es2015
+flow-temp
 
 # Sonar
 .sonar
