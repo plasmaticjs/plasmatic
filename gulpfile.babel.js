@@ -44,7 +44,7 @@ gulp.task('flow', () => (
         .pipe(flow({
           all: true,
           abort: isBuild,
-        }))
+        }));
     })
 ));
 
